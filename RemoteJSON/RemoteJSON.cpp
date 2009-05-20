@@ -144,7 +144,7 @@ void RemoteJSON::respond_read_eeprom(char* buffer, int start, int end) {
     if ((i + 1) <= (end))
       *(buffer + pos++) = ',';
 
-    if (pos > 400) {
+    /*    if (pos > 400) {
       U16 data_avail;
       WiFi.send_data(pos);
       WiFi.set_more_data(0);
@@ -154,7 +154,7 @@ void RemoteJSON::respond_read_eeprom(char* buffer, int start, int end) {
       WiFi.driver_task();
       WiFi.stack_task();
       pos = 0;
-    }
+      }*/
   }
 
   // Close brackets
@@ -203,12 +203,9 @@ void RemoteJSON::send_int_arr(char* buffer, unsigned int* arr, int len) {
   memcpy(buffer, JSON_RESPONSE, pos);
 
   *(buffer + pos++) = '[';
-  unsigned int val;
 
   for (int i = 0; i<len; i++) {
-    val = *(arr+i);    
-    val = 10;
-    pos += sprintf((buffer + pos), "%u", val);
+    pos += sprintf((buffer + pos), "%u", *(arr+i));
     if ((i + 1) < (len))
       *(buffer + pos++) = ',';
   }
