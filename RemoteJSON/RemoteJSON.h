@@ -43,8 +43,6 @@ public:
   void handleWeb();
 
 private:
-  void handleCommand(char* cmd, int arg1, int arg2);
-
   void respond_read_eeprom(char* buffer, int start, int end);
 
   void send_true(char* buffer);
